@@ -58,7 +58,7 @@ CREATE TABLE `Sessions` (
 CREATE TABLE `Tasks` (
   `id` MEDIUMINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text,
   `idSession` MEDIUMINT NOT NULL,
   `urlAvatar` varchar(100),
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

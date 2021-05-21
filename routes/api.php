@@ -66,3 +66,20 @@ Route::group(
     Route::post('delete', 'SessionController@delete');
   }
 );
+
+/**
+ * * This is Group Route Task
+ * todo: add, edit, delete
+ */
+Route::group(
+  [
+    'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers',
+    'prefix'     => 'task',
+  ],
+  function () {
+    Route::post('add', 'TaskController@add');
+    Route::post('edit', 'TaskController@edit');
+    Route::post('delete', 'TaskController@delete');
+  }
+);

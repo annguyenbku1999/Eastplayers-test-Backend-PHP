@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-
   /**
    * * show Projects List from current logged in user
    * todo: When User Login, it will generate token code after that this function will return Projects list of User is logged in.
