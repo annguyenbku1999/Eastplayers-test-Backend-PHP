@@ -354,6 +354,130 @@
                     }
                 }
             }
+        },
+        "/api/session/add": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "description": "add Session",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your token when you logged in:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Enter key project get from showProjectsList api:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter name session:",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/session/edit": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "description": "edit Session",
+                "parameters": [
+                    {
+                        "name": "SessionId",
+                        "in": "query",
+                        "description": "Enter session ID:",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your token when you logged in:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Enter key project get from showProjectsList api:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter name session:",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/session/delete": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "description": "edit Session",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your token when you logged in:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Enter key project get from showProjectsList api:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "SessionId",
+                        "in": "query",
+                        "description": "Enter session ID:",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
         }
     },
     "definitions": {}

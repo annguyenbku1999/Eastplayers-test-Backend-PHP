@@ -125,11 +125,49 @@ class ProjectController extends Controller
    * * delete project
    * @param Request $request
    */
+  public function delete(Request $request)
+  {
+    //Validate request is right format input.
+    $validator = Validator::make(
+      $request->all(),
+      [
+        'token'         => 'required|string',
+        'ProjectId'     =>  'required|numeric'
+      ]
+    );
+    if ($validator->fails()) {
+      return response()->json(
+        [$validator->errors()],
+        422
+      );
+    }
+    //Select USerID from token
+    $User_id = Users::where('token', '=', $request->token)->select('id')->first();
+    //Check User is owner of project
+    $Project_Owner_Check = Projects_Users::where('idProject', '=', $request->ProjectId)
+      ->where('idUser', '=', $User_id->id)
+      ->first();
+    if ($Project_Owner_Check == null) {
+      return response()->json(
+        "You are not the owner of the project.",
+        422
+      );
+    }else{
+      $Project_Delete = Projects::find($request->ProjectId);
+      $Project_Delete->delete();
+      return "Successful";
+    }
+  }
+  
   private function StringArraytoArrayList($list){
     $list =str_replace('[', '', $list);
     $list =str_replace(']', '', $list);
     return array_map('intval',explode(",",$list));
   }
+  /**
+   * * add Member to project
+   * @param Request $request
+   */
   public function addMembertoProject(Request $request)
   {
     //Validate request is right format input.
@@ -180,44 +218,6 @@ class ProjectController extends Controller
       }
       return "Successful.";
       }
-    }
-  }
-
-  /**
-   * * delete project
-   * @param Request $request
-   */
-  public function delete(Request $request)
-  {
-    //Validate request is right format input.
-    $validator = Validator::make(
-      $request->all(),
-      [
-        'token'         => 'required|string',
-        'ProjectId'     =>  'required|numeric'
-      ]
-    );
-    if ($validator->fails()) {
-      return response()->json(
-        [$validator->errors()],
-        422
-      );
-    }
-    //Select USerID from token
-    $User_id = Users::where('token', '=', $request->token)->select('id')->first();
-    //Check User is owner of project
-    $Project_Owner_Check = Projects_Users::where('idProject', '=', $request->ProjectId)
-      ->where('idUser', '=', $User_id->id)
-      ->first();
-    if ($Project_Owner_Check == null) {
-      return response()->json(
-        "You are not the owner of the project.",
-        422
-      );
-    }else{
-      $Project_Delete = Projects::find($request->ProjectId);
-      $Project_Delete->delete();
-      return "Successful";
     }
   }
 
