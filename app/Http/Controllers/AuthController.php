@@ -219,7 +219,7 @@ class AuthController extends Controller
    *         name="UserId",
    *         in="query",
    *         type="string",
-   *         description="Enter your username or email:",
+   *         description="Enter your User ID:",
    *         required=true,
    *     ),
    *     @SWG\Parameter(

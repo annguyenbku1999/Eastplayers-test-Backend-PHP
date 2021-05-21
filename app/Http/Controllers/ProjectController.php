@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -113,6 +114,7 @@ class ProjectController extends Controller
     //Update Project fields.
     $Project->name = $request->name;
     $Project->urlAvatar = $request->urlAvatar;
+    $Project->updated_at = Carbon::now();
     $Project->save();
     return array(
       'ProjectName' => $request->name,
@@ -219,47 +221,6 @@ class ProjectController extends Controller
       }
     }
   }
-
- /**
-   * * This is show Projects List from current logged in user swagger
-   * todo: show Projects List Document 
-   */
-  /**
-   * @SWG\POST(
-   *     path="/api/project/showProjectsList",
-   *     description="show Projects List",
-   *     tags={"Project"},
-   *     @SWG\Parameter(
-   *         name="token",
-   *         in="query",
-   *         type="number",
-   *         description="Enter your token when you logged in:",
-   *         required=true,
-   *     ),
-   *     @SWG\Parameter(
-   *         name="name",
-   *         in="query",
-   *         type="string",
-   *         description="Enter your project name:",
-   *         required=true,
-   *     ),
-   *     @SWG\Parameter(
-   *         name="urlAvatar",
-   *         in="query",
-   *         type="string",
-   *         description="Enter your urlAvatar",
-   *         required=false,
-   *     ),
-   *     @SWG\Response(
-   *         response=200,
-   *         description="Successful.",
-   *     ),
-   *     @SWG\Response(
-   *         response=422,
-   *         description="Missing Data or Data is incorrect."
-   *     )
-   * )
-   */
 
   /**
    * * This is add project swagger
@@ -402,10 +363,38 @@ class ProjectController extends Controller
    *         required=true,
    *     ),
    *     @SWG\Parameter(
-   *         name="urlAvatar",
+   *         name="UserIdList",
    *         in="query",
    *         type="string",
    *         description="Enter User Member List like [1,2,3,...]",
+   *         required=true,
+   *     ),
+   *     @SWG\Response(
+   *         response=200,
+   *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=422,
+   *         description="Missing Data or Data is incorrect."
+   *     )
+   * )
+   */
+
+
+ /**
+   * * This is show Projects List from current logged in user swagger
+   * todo: show Projects List Document 
+   */
+  /**
+   * @SWG\GET(
+   *     path="/api/project/showProjectsList",
+   *     description="show Projects List",
+   *     tags={"Project"},
+   *     @SWG\Parameter(
+   *         name="token",
+   *         in="query",
+   *         type="number",
+   *         description="Enter your token when you logged in:",
    *         required=true,
    *     ),
    *     @SWG\Response(

@@ -52,7 +52,7 @@ Route::group(
 
 /**
  * * This is Group Route Session
- * todo: add, edit, delete
+ * todo: add, edit, delete, showSessionsList
  */
 Route::group(
   [
@@ -61,6 +61,7 @@ Route::group(
     'prefix'     => 'session',
   ],
   function () {
+    Route::get('showSessionsList', 'SessionController@showSessionsList');
     Route::post('add', 'SessionController@add');
     Route::post('edit', 'SessionController@edit');
     Route::post('delete', 'SessionController@delete');
@@ -69,7 +70,7 @@ Route::group(
 
 /**
  * * This is Group Route Task
- * todo: add, edit, delete
+ * todo: add, edit, delete, showTasksList
  */
 Route::group(
   [
@@ -78,6 +79,7 @@ Route::group(
     'prefix'     => 'task',
   ],
   function () {
+    Route::get('showTasksList', 'TaskController@showTasksList');
     Route::post('add', 'TaskController@add');
     Route::post('edit', 'TaskController@edit');
     Route::post('delete', 'TaskController@delete');
