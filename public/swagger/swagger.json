@@ -1,0 +1,243 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel and Swagger",
+        "description": "Getting started with Laravel and Swagger",
+        "termsOfService": "",
+        "contact": {
+            "email": "an.nguyenbku1999@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Authencation"
+                ],
+                "description": "Login User",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "Enter your username or email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Enter your password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authencation"
+                ],
+                "description": "Logout User",
+                "parameters": [
+                    {
+                        "name": "UserId",
+                        "in": "query",
+                        "description": "Enter your username or email:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter the token issued when you login:",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Authencation"
+                ],
+                "description": "Register User",
+                "parameters": [
+                    {
+                        "name": "firstName",
+                        "in": "query",
+                        "description": "Your first name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lastName",
+                        "in": "query",
+                        "description": "Your last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "Your username",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Your Email",
+                        "required": true,
+                        "type": "string",
+                        "format": "email"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Your password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Select gender",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "male",
+                            "female",
+                            "non-binary"
+                        ]
+                    },
+                    {
+                        "name": "dateOfBirth",
+                        "in": "query",
+                        "description": "enter dateOfBirth with format: yyyy-mm-dd",
+                        "required": true,
+                        "type": "string",
+                        "format": "date"
+                    },
+                    {
+                        "name": "urlAvatar",
+                        "in": "query",
+                        "description": "Your urlAvatar",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "companyWork",
+                        "in": "query",
+                        "description": "Your companyWork",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/project/add": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Add Project",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter your project name:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "urlAvatar",
+                        "in": "query",
+                        "description": "Enter your urlAvatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/project/edit": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Edit Project",
+                "parameters": [
+                    {
+                        "name": "ProjectId",
+                        "in": "query",
+                        "description": "Enter your project name:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter your project name:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "urlAvatar",
+                        "in": "query",
+                        "description": "Enter your urlAvatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
