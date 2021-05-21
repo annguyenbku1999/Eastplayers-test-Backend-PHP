@@ -167,13 +167,20 @@
                 }
             }
         },
-        "/api/project/add": {
+        "/api/project/showProjectsList": {
             "post": {
                 "tags": [
                     "Project"
                 ],
-                "description": "Add Project",
+                "description": "show Projects List",
                 "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your token when you logged in:",
+                        "required": true,
+                        "type": "number"
+                    },
                     {
                         "name": "name",
                         "in": "query",
@@ -187,6 +194,77 @@
                         "description": "Enter your urlAvatar",
                         "required": false,
                         "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/project/add": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Add Project",
+                "parameters": [
+                    {
+                        "name": "UserId",
+                        "in": "query",
+                        "description": "Enter your UserId:",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter your project name:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "urlAvatar",
+                        "in": "query",
+                        "description": "Enter your urlAvatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/project/delete": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Delete Project",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your user token when logged in:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ProjectId",
+                        "in": "query",
+                        "description": "Enter your project id:",
+                        "required": true,
+                        "type": "number"
                     }
                 ],
                 "responses": {
@@ -225,6 +303,45 @@
                         "in": "query",
                         "description": "Enter your urlAvatar",
                         "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful."
+                    },
+                    "422": {
+                        "description": "Missing Data or Data is incorrect."
+                    }
+                }
+            }
+        },
+        "/api/project/addMembertoProject": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "add Member to Project",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Enter your token when you logged in:",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Enter key project get from showProjectsList api:",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "urlAvatar",
+                        "in": "query",
+                        "description": "Enter User Member List like [1,2,3,...]",
+                        "required": true,
                         "type": "string"
                     }
                 ],

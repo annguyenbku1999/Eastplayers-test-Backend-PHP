@@ -33,7 +33,7 @@ Route::group(
 
 /**
  * * This is Group Route Project
- * todo: add, edit, delete
+ * todo: add, edit, delete, showProjectsList, addMembertoProject
  */
 Route::group(
   [
@@ -42,9 +42,27 @@ Route::group(
     'prefix'     => 'project',
   ],
   function () {
-    // Route::get('showProjectsList', 'ProjectController@showProjectsList');
+    Route::get('showProjectsList', 'ProjectController@showProjectsList');
     Route::post('add', 'ProjectController@add');
     Route::post('edit', 'ProjectController@edit');
     Route::post('delete', 'ProjectController@delete');
+    Route::post('addMembertoProject', 'ProjectController@addMembertoProject');
+  }
+);
+
+/**
+ * * This is Group Route Session
+ * todo: add, edit, delete
+ */
+Route::group(
+  [
+    'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers',
+    'prefix'     => 'session',
+  ],
+  function () {
+    Route::post('add', 'SessionController@add');
+    Route::post('edit', 'SessionController@edit');
+    Route::post('delete', 'SessionController@delete');
   }
 );
