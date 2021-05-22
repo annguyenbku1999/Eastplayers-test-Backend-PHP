@@ -20,7 +20,7 @@ class TaskController extends Controller
     if ($User_id == null) {
       return response()->json(
         "Check Token User false.",
-        422
+        204
       );
     }
     $User_username = $User_id->username;
@@ -31,7 +31,7 @@ class TaskController extends Controller
     if ($Project_id == null) {
       return response()->json(
         "Check Key Project false.",
-        422
+        204
       );
     }
     $Project_id = $Project_id->id;
@@ -90,7 +90,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -136,7 +136,7 @@ class TaskController extends Controller
       if ($editTask == null) {
         return response()->json(
           "Task does not exist.",
-          422
+          204
         );
       }
       $editTask->title = $request->title;
@@ -150,7 +150,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -192,7 +192,7 @@ class TaskController extends Controller
       if ($deleteTask == null) {
         return response()->json(
           "Task does not exist.",
-          422
+          204
         );
       }
       $deleteTask->delete();
@@ -202,7 +202,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -263,7 +263,7 @@ class TaskController extends Controller
         else {
           return response()->json(
             "User have id=" . $User . " exist in Task.",
-            422
+            409
           );
         }
       }
@@ -273,7 +273,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -322,7 +322,7 @@ class TaskController extends Controller
       else {
         return response()->json(
           $Username . " does not exist in Task.",
-          422
+          405
         );
       }
 
@@ -332,7 +332,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -377,7 +377,7 @@ class TaskController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -431,9 +431,21 @@ class TaskController extends Controller
    *         type="string",
    *         description="Enter urlAvatar:"
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -499,9 +511,21 @@ class TaskController extends Controller
    *         type="string",
    *         description="Enter urlAvatar:",
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -540,9 +564,21 @@ class TaskController extends Controller
    *         description="Enter Task ID:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -588,9 +624,21 @@ class TaskController extends Controller
    *         description="Enter User Member List like [1,2,3,...]",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -636,9 +684,21 @@ class TaskController extends Controller
    *         description="Enter User ID Member do you want to remove:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -677,9 +737,21 @@ class TaskController extends Controller
    *         description="Enter session ID:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,

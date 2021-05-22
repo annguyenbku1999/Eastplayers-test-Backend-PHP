@@ -41,6 +41,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -72,6 +81,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -161,6 +179,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -200,6 +227,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -231,6 +267,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -271,6 +316,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -309,6 +363,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -349,6 +412,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -373,6 +445,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -412,6 +493,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -459,6 +549,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -498,6 +597,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -529,6 +637,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -587,6 +704,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -653,6 +779,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -691,6 +826,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
@@ -738,6 +882,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -784,6 +937,15 @@
                     "200": {
                         "description": "Successful."
                     },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
+                    },
                     "422": {
                         "description": "Missing Data or Data is incorrect."
                     }
@@ -822,6 +984,15 @@
                 "responses": {
                     "200": {
                         "description": "Successful."
+                    },
+                    "204": {
+                        "description": "No Content."
+                    },
+                    "405": {
+                        "description": "Method Not Allowed."
+                    },
+                    "409": {
+                        "description": "The request could not be completed due to a conflict with the current state of the target resource."
                     },
                     "422": {
                         "description": "Missing Data or Data is incorrect."

@@ -108,7 +108,7 @@ class ProjectController extends Controller
     if ($Project == null) {
       return response()->json(
         "Project does not exist.",
-        422
+        204
       );
     }
     //Update Project fields.
@@ -151,7 +151,7 @@ class ProjectController extends Controller
     if ($Project_Owner_Check == null) {
       return response()->json(
         "You are not the owner of the project.",
-        422
+        204
       );
     } else {
       $Project_Delete = Projects::find($request->ProjectId);
@@ -215,7 +215,7 @@ class ProjectController extends Controller
         else {
           return response()->json(
             "User have id=" . $User . " exist in Project.",
-            422
+            409
           );
         }
       }
@@ -223,7 +223,7 @@ class ProjectController extends Controller
     } else {
       return response()->json(
         "You must be Project Owner if you want to add Member to Project",
-        422
+        405
       );
     }
   }
@@ -268,7 +268,7 @@ class ProjectController extends Controller
       else {
         return response()->json(
           "User have id=" . $request->UserId . " does not exist in Project.",
-          422
+          204
         );
       }
 
@@ -276,7 +276,7 @@ class ProjectController extends Controller
     } else {
       return response()->json(
         "You must be a member of Project if you want to remove Member from Project",
-        422
+        405
       );
     }
   }
@@ -316,6 +316,18 @@ class ProjectController extends Controller
    *         description="Successful.",
    *     ),
    *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
+   *     ),
+   *     @SWG\Response(
    *         response=422,
    *         description="Missing Data or Data is incorrect."
    *     )
@@ -345,9 +357,21 @@ class ProjectController extends Controller
    *         description="Enter your project id:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -387,9 +411,21 @@ class ProjectController extends Controller
    *         description="Enter your urlAvatar",
    *         required=false,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -428,9 +464,21 @@ class ProjectController extends Controller
    *         description="Enter User Member List like [1,2,3,...]",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -469,9 +517,21 @@ class ProjectController extends Controller
    *         description="Enter User ID Member do you want to remove:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -497,9 +557,21 @@ class ProjectController extends Controller
    *         description="Enter your token when you logged in:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,

@@ -90,7 +90,7 @@ class AuthController extends Controller
     if($User==null){
       return response()->json(
         ['Username does not exist.'],
-        422
+        204
       );
     }
     if($User->token!=null){
@@ -146,7 +146,7 @@ class AuthController extends Controller
     if($User==null){
       return response()->json(
         ['User are not logged in.'],
-        422
+        204
       );
     }
     /**
@@ -162,7 +162,7 @@ class AuthController extends Controller
     else{
       return response()->json(
         ['token is incorrect.'],
-        422
+        204
       );
     }
     return $User->password;
@@ -195,9 +195,21 @@ class AuthController extends Controller
    *         description="Enter your password",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -229,9 +241,21 @@ class AuthController extends Controller
    *         description="Enter the token issued when you login:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -315,9 +339,21 @@ class AuthController extends Controller
    *         description="Your companyWork",
    *         required=false,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,

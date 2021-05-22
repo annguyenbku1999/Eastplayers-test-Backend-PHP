@@ -21,7 +21,7 @@ class SessionController extends Controller
     if ($User_id == null) {
       return response()->json(
         "Check Token User false.",
-        422
+        204
       );
     }
     $User_username = $User_id->username;
@@ -32,7 +32,7 @@ class SessionController extends Controller
     if ($Project_id == null) {
       return response()->json(
         "Check Key Project false.",
-        422
+        204
       );
     }
     $Project_id = $Project_id->id;
@@ -85,7 +85,7 @@ class SessionController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -128,7 +128,7 @@ class SessionController extends Controller
       if ($editSession == null) {
         return response()->json(
           "SessionId does not exist.",
-          422
+          204
         );
       }
       $editSession->updated_at = Carbon::now();
@@ -140,7 +140,7 @@ class SessionController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -182,7 +182,7 @@ class SessionController extends Controller
       if ($deleteSession == null) {
         return response()->json(
           "SessionId does not exist.",
-          422
+          204
         );
       }
       $deleteSession->delete();
@@ -192,7 +192,7 @@ class SessionController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -236,7 +236,7 @@ class SessionController extends Controller
     else {
       return response()->json(
         $Username . " does not have joined the project",
-        422
+        405
       );
     }
   }
@@ -271,9 +271,21 @@ class SessionController extends Controller
    *         description="Enter name Session:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -319,9 +331,21 @@ class SessionController extends Controller
    *         description="Enter name session:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -360,9 +384,21 @@ class SessionController extends Controller
    *         description="Enter session ID:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
@@ -393,9 +429,21 @@ class SessionController extends Controller
    *         description="Enter key project get from showProjectsList api:",
    *         required=true,
    *     ),
-   *     @SWG\Response(
+   *      @SWG\Response(
    *         response=200,
    *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=204,
+   *         description="No Content.",
+   *     ),
+   *     @SWG\Response(
+   *         response=405,
+   *         description="Method Not Allowed.",
+   *     ),
+   *     @SWG\Response(
+   *         response=409,
+   *         description="The request could not be completed due to a conflict with the current state of the target resource.",
    *     ),
    *     @SWG\Response(
    *         response=422,
