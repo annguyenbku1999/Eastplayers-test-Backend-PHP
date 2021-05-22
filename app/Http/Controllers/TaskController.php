@@ -206,6 +206,136 @@ class TaskController extends Controller
       );
     }
   }
+
+  /**
+   * * add Member List to Task
+   * @param Request $request
+   */
+  private function StringArraytoArrayList($list)
+  {
+    $list = str_replace('[', '', $list);
+    $list = str_replace(']', '', $list);
+    return array_map('intval', explode(",", $list));
+  }
+  public function addMembersListToTask(Request $request)
+  {
+    //Validate request is right format input.
+    $validator = Validator::make(
+      $request->all(),
+      [
+        'key'                => 'required|string',
+        'token'              => 'required|string',
+        'TaskId'          => 'required|numeric',
+        'UserIdList'         => 'required|string'
+      ]
+    );
+    if ($validator->fails()) {
+      return response()->json(
+        [$validator->errors()],
+        422
+      );
+    }
+    //Check Key and Token from DB
+    $resultCheck = $this->checkTokenAndKey($request);
+    $User_id = $resultCheck['User_id'];
+    $Project_id = $resultCheck['Project_id'];
+    $Username = $resultCheck['Username'];
+    //Check User is in Project  
+    $Project_Member_check = Projects_Users::where('idUser', '=', $User_id)
+      ->where('idProject', '=', $Project_id)
+      ->select('Type')
+      ->first();
+    //Case the user has joined the project
+    if ($Project_Member_check != null) {
+      //Handle UserIdList string to UserIdList array
+      $UsersList = $this->StringArraytoArrayList($request->UserIdList);
+      foreach ($UsersList as $User) {
+        //Check User in List exist in Task
+        $User_check = Users_Tasks::where('idUser', '=', $User)->first();
+        //If User does not exist -> add User to Task 
+        if ($User_check == null) {
+          $Add_User_to_Task = new Users_Tasks();
+          $Add_User_to_Task->idTask = $request->TaskId;
+          $Add_User_to_Task->idUser = $User;
+          $Add_User_to_Task->save();
+        }
+        //If User does exist -> return error string.
+        else {
+          return response()->json(
+            "User have id=" . $User . " exist in Task.",
+            422
+          );
+        }
+      }
+      return "Successful.";
+    }
+    //Case the user does not have joined the project
+    else {
+      return response()->json(
+        $Username . " does not have joined the project",
+        422
+      );
+    }
+  }
+
+  /**
+   * * Remove Member From Task
+   * @param Request $request
+   */
+  public function removeMember(Request $request)
+  {
+    //Validate request is right format input.
+    $validator = Validator::make(
+      $request->all(),
+      [
+        'key'                => 'required|string',
+        'token'              => 'required|string',
+        'TaskId'             => 'required|numeric',
+        'UserId'             => 'required|numeric'
+      ]
+    );
+    if ($validator->fails()) {
+      return response()->json(
+        [$validator->errors()],
+        422
+      );
+    }
+    //Check Key and Token from DB
+    $resultCheck = $this->checkTokenAndKey($request);
+    $User_id = $resultCheck['User_id'];
+    $Project_id = $resultCheck['Project_id'];
+    $Username = $resultCheck['Username'];
+    //Check User is in Project  
+    $Project_Member_check = Projects_Users::where('idUser', '=', $User_id)
+      ->where('idProject', '=', $Project_id)
+      ->select('Type')
+      ->first();
+    //Case the user has joined the project
+    if ($Project_Member_check != null) {
+      //Check User in List exist in Task
+      $User_remove = Users_Tasks::where('idUser', '=', $request->UserId)->first();
+      //If User exist -> remove User from Task
+      if ($User_remove != null) {
+        $User_remove->delete();
+      }
+      //If User does exist -> return User does not exist in Task.
+      else {
+        return response()->json(
+          $Username . " does not exist in Task.",
+          422
+        );
+      }
+
+      return "Successful.";
+    }
+    //Case the user does not have joined the project
+    else {
+      return response()->json(
+        $Username . " does not have joined the project",
+        422
+      );
+    }
+  }
   /**
    * * show Tasks List
    * @param Request $request
@@ -421,7 +551,103 @@ class TaskController extends Controller
    * )
    */
 
-   /**
+  /**
+   * * This is function add Members List To Task swagger
+   * todo: Add Members List To Task Document 
+   */
+  /**
+   * @SWG\POST(
+   *     path="/api/task/addMembersListToTask",
+   *     description="add Members List To Task",
+   *     tags={"Task"},
+   *     @SWG\Parameter(
+   *         name="token",
+   *         in="query",
+   *         type="string",
+   *         description="Enter your token when you logged in:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="key",
+   *         in="query",
+   *         type="string",
+   *         description="Enter key project get from showProjectsList api:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="TaskId",
+   *         in="query",
+   *         type="number",
+   *         description="Enter Task ID:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="UserIdList",
+   *         in="query",
+   *         type="string",
+   *         description="Enter User Member List like [1,2,3,...]",
+   *         required=true,
+   *     ),
+   *     @SWG\Response(
+   *         response=200,
+   *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=422,
+   *         description="Missing Data or Data is incorrect."
+   *     )
+   * )
+   */
+
+  /**
+   * * This is function Remove Member To Task swagger
+   * todo: Remove Members from Task Document 
+   */
+  /**
+   * @SWG\POST(
+   *     path="/api/task/removeMember",
+   *     description="remove Member from Task",
+   *     tags={"Task"},
+   *     @SWG\Parameter(
+   *         name="token",
+   *         in="query",
+   *         type="string",
+   *         description="Enter your token when you logged in:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="key",
+   *         in="query",
+   *         type="string",
+   *         description="Enter key project get from showProjectsList api:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="TaskId",
+   *         in="query",
+   *         type="number",
+   *         description="Enter Task ID:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="UserId",
+   *         in="query",
+   *         type="number",
+   *         description="Enter User ID Member do you want to remove:",
+   *         required=true,
+   *     ),
+   *     @SWG\Response(
+   *         response=200,
+   *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=422,
+   *         description="Missing Data or Data is incorrect."
+   *     )
+   * )
+   */
+
+  /**
    * * This is function show Tasks list swagger
    * todo: Show Task list Document 
    */

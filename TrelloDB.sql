@@ -84,14 +84,16 @@ CREATE TABLE `Users_Tasks` (
 ALTER TABLE Sessions 
   ADD CONSTRAINT fk_Project_id
   FOREIGN KEY(idProject) 
-  REFERENCES Projects(id);
+  REFERENCES Projects(id)
+  ON DELETE CASCADE;
 --
 -- Add FOREIGN KEY for table `Tasks`
 --
 ALTER TABLE Tasks 
   ADD CONSTRAINT fk_Session_id
   FOREIGN KEY(idSession) 
-  REFERENCES Sessions(id);
+  REFERENCES Sessions(id)
+  ON DELETE CASCADE;
 
 --
 -- Add FOREIGN KEY for table `Projects_Users`
@@ -114,9 +116,11 @@ ALTER TABLE Projects_Users
 ALTER TABLE Users_Tasks 
   ADD CONSTRAINT fk_Task_id_inUsers_Tasks
   FOREIGN KEY(idTask) 
-  REFERENCES Tasks(id);
+  REFERENCES Tasks(id)
+  ON DELETE;
 
 ALTER TABLE Users_Tasks 
   ADD CONSTRAINT fk_User_id_inUsers_Tasks
   FOREIGN KEY(idUser) 
-  REFERENCES Users(id);
+  REFERENCES Users(id)
+  ON DELETE;

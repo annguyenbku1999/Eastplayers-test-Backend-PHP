@@ -36,10 +36,10 @@ class ProjectController extends Controller
     //Get UserId from token 
     $User_id = Users::where('token', '=', $request->token)->select('id')->first();
     //Select Project List from Database
-    $SelectProjectsList= DB::table('Projects')
-                        ->leftJoin('Projects_Users','Projects.id','Projects_Users.idProject')
-                        ->where('Projects_Users.idUser','=',$User_id->id)
-                        ->get();
+    $SelectProjectsList = DB::table('Projects')
+      ->leftJoin('Projects_Users', 'Projects.id', 'Projects_Users.idProject')
+      ->where('Projects_Users.idUser', '=', $User_id->id)
+      ->get();
     return $SelectProjectsList;
   }
 
@@ -105,7 +105,7 @@ class ProjectController extends Controller
     }
     $Project = Projects::find($request->ProjectId);
     //If Project does not exist, return.
-    if($Project == null){
+    if ($Project == null) {
       return response()->json(
         "Project does not exist.",
         422
@@ -153,17 +153,18 @@ class ProjectController extends Controller
         "You are not the owner of the project.",
         422
       );
-    }else{
+    } else {
       $Project_Delete = Projects::find($request->ProjectId);
       $Project_Delete->delete();
       return "Successful";
     }
   }
-  
-  private function StringArraytoArrayList($list){
-    $list =str_replace('[', '', $list);
-    $list =str_replace(']', '', $list);
-    return array_map('intval',explode(",",$list));
+
+  private function StringArraytoArrayList($list)
+  {
+    $list = str_replace('[', '', $list);
+    $list = str_replace(']', '', $list);
+    return array_map('intval', explode(",", $list));
   }
   /**
    * * add Member to project
@@ -191,34 +192,92 @@ class ProjectController extends Controller
     //Select ProjectId from key
     $Project_id = Projects::where('key', '=', $request->key)->select('id')->first();
     //Check User is Project owner 
-    $Project_Owner_check = Projects_Users::where('idUser','=',$User_id->id)
-                        ->where('idProject','=',$Project_id->id)
-                        ->select('Type')
-                        ->first();
+    $Project_Owner_check = Projects_Users::where('idUser', '=', $User_id->id)
+      ->where('idProject', '=', $Project_id->id)
+      ->select('Type')
+      ->first();
     //Handle UserIdList string to UserIdList array
     $UsersList = $this->StringArraytoArrayList($request->UserIdList);
     //Add member list id User is Project Owner
-    if($Project_Owner_check->Type == 'Owner'){
-      foreach($UsersList as $User){
+    if ($Project_Owner_check->Type == 'Owner') {
+      foreach ($UsersList as $User) {
         //Check User in List exist in Project
-        $User_check = Projects_Users::where('idUser','=',$User)->first();
+        $User_check = Projects_Users::where('idUser', '=', $User)->first();
         //If User does not exist -> add User to Project with role Member
-        if($User_check==null){
-        $Add_User_to_Projects_Users = new Projects_Users();
-        $Add_User_to_Projects_Users->idProject = $Project_id->id;
-        $Add_User_to_Projects_Users->idUser = $User;
-        $Add_User_to_Projects_Users->Type = "Member";
-        $Add_User_to_Projects_Users->save();
+        if ($User_check == null) {
+          $Add_User_to_Projects_Users = new Projects_Users();
+          $Add_User_to_Projects_Users->idProject = $Project_id->id;
+          $Add_User_to_Projects_Users->idUser = $User;
+          $Add_User_to_Projects_Users->Type = "Member";
+          $Add_User_to_Projects_Users->save();
+        }
+        //If User does exist -> return error string.
+        else {
+          return response()->json(
+            "User have id=" . $User . " exist in Project.",
+            422
+          );
+        }
+      }
+      return "Successful.";
+    } else {
+      return response()->json(
+        "You must be Project Owner if you want to add Member to Project",
+        422
+      );
+    }
+  }
+  /**
+   * * remove member from Project
+   * @param Request $request
+   */
+  public function removeMember(Request $request)
+  {
+    //Validate request is right format input.
+    $validator = Validator::make(
+      $request->all(),
+      [
+        'UserId'             => 'required|numeric',
+        'key'                => 'required|string',
+        'token'              => 'required|string',
+      ]
+    );
+    if ($validator->fails()) {
+      return response()->json(
+        [$validator->errors()],
+        422
+      );
+    }
+    //Select USerID from token
+    $User_id = Users::where('token', '=', $request->token)->select('id')->first();
+    //Select ProjectId from key
+    $Project_id = Projects::where('key', '=', $request->key)->select('id')->first();
+    //Check User is Project owner 
+    $Project_Member_check = Projects_Users::where('idUser', '=', $User_id->id)
+      ->where('idProject', '=', $Project_id->id)
+      ->select('Type')
+      ->first();
+    //Remove member list id User is Project Owner
+    if ($Project_Member_check != null) {
+      $User_remove = Projects_Users::where('idUser', '=', $request->UserId)->first();
+      //If User exist from Project-> remove User from Project
+      if ($User_remove != null) {
+        $User_remove->delete();
       }
       //If User does exist -> return error string.
-      else{
+      else {
         return response()->json(
-          "User have id=".$User." exist in Project.",
+          "User have id=" . $request->UserId . " does not exist in Project.",
           422
         );
       }
+
       return "Successful.";
-      }
+    } else {
+      return response()->json(
+        "You must be a member of Project if you want to remove Member from Project",
+        422
+      );
     }
   }
 
@@ -263,7 +322,7 @@ class ProjectController extends Controller
    * )
    */
 
-   /**
+  /**
    * * This is delete swagger
    * todo: Show delete project Document 
    */
@@ -297,11 +356,11 @@ class ProjectController extends Controller
    * )
    */
 
- /**
+  /**
    * * This is edit project swagger
    * todo: Show edit project Document 
    */
-  
+
   /**
    * @SWG\POST(
    *     path="/api/project/edit",
@@ -339,7 +398,7 @@ class ProjectController extends Controller
    * )
    */
 
-   /**
+  /**
    * * Function addMembertoProject Swaggger 
    * todo: add Member to Project Document 
    */
@@ -380,8 +439,49 @@ class ProjectController extends Controller
    * )
    */
 
+  /**
+   * * Function removeMember from Project Swaggger 
+   * todo: removeMember from Project Document 
+   */
+  /**
+   * @SWG\POST(
+   *     path="/api/project/removeMember",
+   *     description="remove Member from Project",
+   *     tags={"Project"},
+   *     @SWG\Parameter(
+   *         name="token",
+   *         in="query",
+   *         type="number",
+   *         description="Enter your token when you logged in:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="key",
+   *         in="query",
+   *         type="string",
+   *         description="Enter key project get from showProjectsList api:",
+   *         required=true,
+   *     ),
+   *     @SWG\Parameter(
+   *         name="UserId",
+   *         in="query",
+   *         type="number",
+   *         description="Enter User ID Member do you want to remove:",
+   *         required=true,
+   *     ),
+   *     @SWG\Response(
+   *         response=200,
+   *         description="Successful.",
+   *     ),
+   *     @SWG\Response(
+   *         response=422,
+   *         description="Missing Data or Data is incorrect."
+   *     )
+   * )
+   */
 
- /**
+
+  /**
    * * This is show Projects List from current logged in user swagger
    * todo: show Projects List Document 
    */
@@ -407,4 +507,4 @@ class ProjectController extends Controller
    *     )
    * )
    */
-  }
+}

@@ -47,6 +47,7 @@ Route::group(
     Route::post('edit', 'ProjectController@edit');
     Route::post('delete', 'ProjectController@delete');
     Route::post('addMembertoProject', 'ProjectController@addMembertoProject');
+    Route::post('removeMember', 'ProjectController@removeMember');
   }
 );
 
@@ -70,7 +71,7 @@ Route::group(
 
 /**
  * * This is Group Route Task
- * todo: add, edit, delete, showTasksList
+ * todo: add, edit, delete, showTasksList, addMembersList
  */
 Route::group(
   [
@@ -83,5 +84,7 @@ Route::group(
     Route::post('add', 'TaskController@add');
     Route::post('edit', 'TaskController@edit');
     Route::post('delete', 'TaskController@delete');
+    Route::post('addMembersListToTask', 'TaskController@addMembersListToTask');
+    Route::post('removeMember', 'TaskController@removeMember');
   }
 );
